@@ -8,23 +8,42 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView resTextView;
-    char operationName  ;
+    TextView numTextView;
+    Double numberLast = null;
+    String operationLast = null  ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        resTextView = (TextView) findViewById(R.id.resTextView);
+        numTextView = (TextView) findViewById(R.id.screenTextView);
     }
 
     public void clickNumKey(View view){
         Button but = (Button)view;
-        resTextView.append(but.getText());
+        numTextView.append(but.getText());
     }
+
     public void clickOperationKey(View view){
         Button but = (Button)view;
+        if(numberLast == null) {
+            operationLast = but.getText().toString();
+            numberLast=Double.valueOf(numTextView.getText().toString());
+            numTextView.setText("");
+        }
+        else {
+            numTextView.setText(Calc.execute(numberLast, Double.valueOf(numTextView.getText().toString()), operationLast));
+            operationLast = but.getText().toString();
+            numberLast = null;
+        }
 
-        resTextView.setText(but.getText());
+    }
+
+    public void clickClearKey(View view){
+        Button but = (Button)view;
+        if(but.getText().equals("C")) {
+            numTextView.setText("");
+            numberLast = null;
+        }
     }
 }

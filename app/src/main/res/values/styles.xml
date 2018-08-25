@@ -11,4 +11,10 @@
         <item name="android:textSize">20dp</item>
         <item name="android:onClick">"clickNumKey"</item>
     </style>
+    <style name="OperButton">
+        <item name="android:textSize">20dp</item>
+        <item name="android:onClick">"clickOperationKey"</item>
+        <item name="android:textColor">#F30505</item>
+
+    </style>
 </resources>
